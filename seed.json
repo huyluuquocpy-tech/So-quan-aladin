@@ -1,0 +1,2097 @@
+{
+"products": {
+"p-01": {
+"active": true,
+"cat": "Coffee",
+"name": "Cà phê đen",
+"price": 12000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 20
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 1
+},
+"p-02": {
+"active": true,
+"cat": "Coffee",
+"name": "Cà phê sữa",
+"price": 15000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 2
+},
+"p-03": {
+"active": true,
+"cat": "Coffee",
+"name": "Bạc xỉu 3 tầng",
+"price": 18000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 12
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "sua-tuoi",
+"qty": 60
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 3
+},
+"p-04": {
+"active": true,
+"cat": "Coffee",
+"name": "Cà phê muối",
+"price": 20000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 25
+},
+{
+"ing": "kem-muoi",
+"qty": 30
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 4
+},
+"p-05": {
+"active": true,
+"cat": "Coffee",
+"name": "Cà phê kem trứng",
+"price": 22000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "kem-trung",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 5
+},
+"p-06": {
+"active": true,
+"cat": "Coffee",
+"name": "Cà phê kem dừa",
+"price": 22000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 15
+},
+{
+"ing": "nuoc-cot-dua",
+"qty": 60
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.2
+}
+],
+"recipeSample": true,
+"sort": 6
+},
+"p-07": {
+"active": true,
+"cat": "Coffee",
+"name": "Cà phê sương sáo",
+"price": 22000,
+"recipe": [
+{
+"ing": "ca-phe",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "suong-sao",
+"qty": 60
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 7
+},
+"p-08": {
+"active": true,
+"cat": "Trà sữa truyền thống",
+"name": "Trà sữa truyền thống",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 6
+},
+{
+"ing": "bot-beo",
+"qty": 30
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 8
+},
+"p-09": {
+"active": true,
+"cat": "Trà sữa truyền thống",
+"name": "Trà sữa kem trứng",
+"price": 28000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 6
+},
+{
+"ing": "bot-beo",
+"qty": 25
+},
+{
+"ing": "duong",
+"qty": 20
+},
+{
+"ing": "kem-trung",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 9
+},
+"p-10": {
+"active": true,
+"cat": "Trà sữa truyền thống",
+"name": "Trà sữa kem phô mai mặn",
+"price": 28000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 6
+},
+{
+"ing": "bot-beo",
+"qty": 25
+},
+{
+"ing": "duong",
+"qty": 20
+},
+{
+"ing": "kem-pho-mai",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 10
+},
+"p-11": {
+"active": true,
+"cat": "Trà sữa đậm vị",
+"name": "Ô long sữa Aladin",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-olong",
+"qty": 6
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "bot-beo",
+"qty": 15
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 11
+},
+"p-12": {
+"active": true,
+"cat": "Trà sữa đậm vị",
+"name": "Ô long nhài sữa",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-nhai",
+"qty": 6
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "bot-beo",
+"qty": 15
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 12
+},
+"p-13": {
+"active": true,
+"cat": "Trà sữa đậm vị",
+"name": "Ô long trà bá tước",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-ba-tuoc",
+"qty": 6
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "bot-beo",
+"qty": 15
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 13
+},
+"p-14": {
+"active": true,
+"cat": "Trà sữa đậm vị",
+"name": "Ô long tiên tử",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-olong",
+"qty": 6
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "thach-jelly",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 14
+},
+"p-15": {
+"active": true,
+"cat": "Trà sữa đậm vị",
+"name": "Ô long trứng nướng",
+"price": 30000,
+"recipe": [
+{
+"ing": "tra-olong",
+"qty": 6
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "duong",
+"qty": 20
+},
+{
+"ing": "kem-trung",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 15
+},
+"p-16": {
+"active": true,
+"cat": "Trà sữa đậm vị",
+"name": "Ô long phô mai kem dẻo",
+"price": 32000,
+"recipe": [
+{
+"ing": "tra-olong",
+"qty": 6
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "duong",
+"qty": 20
+},
+{
+"ing": "kem-pho-mai",
+"qty": 50
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 16
+},
+"p-17": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha latte",
+"price": 20000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "sua-tuoi",
+"qty": 150
+},
+{
+"ing": "duong",
+"qty": 20
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 17
+},
+"p-18": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha coco",
+"price": 22000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "nuoc-cot-dua",
+"qty": 60
+},
+{
+"ing": "sua-tuoi",
+"qty": 100
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 18
+},
+"p-19": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha xoài",
+"price": 22000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "sua-tuoi",
+"qty": 120
+},
+{
+"ing": "xoai",
+"qty": 60
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 19
+},
+"p-20": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha dâu",
+"price": 22000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "sua-tuoi",
+"qty": 120
+},
+{
+"ing": "dau",
+"qty": 50
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 20
+},
+"p-21": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha kem trứng",
+"price": 25000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "sua-tuoi",
+"qty": 120
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "kem-trung",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 21
+},
+"p-22": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha kem muối",
+"price": 25000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "sua-tuoi",
+"qty": 120
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "kem-muoi",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 22
+},
+"p-23": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Matcha kem phô mai",
+"price": 25000,
+"recipe": [
+{
+"ing": "bot-matcha",
+"qty": 4
+},
+{
+"ing": "sua-tuoi",
+"qty": 120
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "kem-pho-mai",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 23
+},
+"p-24": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Milo dầm",
+"price": 25000,
+"recipe": [
+{
+"ing": "milo",
+"qty": 40
+},
+{
+"ing": "sua-dac",
+"qty": 20
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 24
+},
+"p-25": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Cacao dầm",
+"price": 25000,
+"recipe": [
+{
+"ing": "bot-cacao",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 25
+},
+"p-26": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Cacao kem muối",
+"price": 25000,
+"recipe": [
+{
+"ing": "bot-cacao",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 25
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "kem-muoi",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 26
+},
+"p-27": {
+"active": true,
+"cat": "Matcha & Cacao",
+"name": "Cacao kem trứng",
+"price": 25000,
+"recipe": [
+{
+"ing": "bot-cacao",
+"qty": 20
+},
+{
+"ing": "sua-dac",
+"qty": 25
+},
+{
+"ing": "sua-tuoi",
+"qty": 80
+},
+{
+"ing": "kem-trung",
+"qty": 40
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 27
+},
+"p-28": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà chanh vàng",
+"price": 20000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "chanh-vang",
+"qty": 0.5
+},
+{
+"ing": "duong",
+"qty": 30
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 28
+},
+"p-29": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà lựu đỏ thạch jelly",
+"price": 22000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "siro-luu",
+"qty": 30
+},
+{
+"ing": "thach-jelly",
+"qty": 50
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 29
+},
+"p-30": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà xoài chanh dây",
+"price": 22000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "xoai",
+"qty": 50
+},
+{
+"ing": "chanh-day",
+"qty": 1
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 30
+},
+"p-31": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà dâu tây tuyết",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "dau",
+"qty": 60
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 31
+},
+"p-32": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà me muối ớt",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "me",
+"qty": 30
+},
+{
+"ing": "duong",
+"qty": 30
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 32
+},
+"p-33": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà nho thạch mát",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "nho",
+"qty": 60
+},
+{
+"ing": "thach-jelly",
+"qty": 50
+},
+{
+"ing": "duong",
+"qty": 20
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 33
+},
+"p-34": {
+"active": true,
+"cat": "Trà trái cây",
+"name": "Trà ổi hồng",
+"price": 25000,
+"recipe": [
+{
+"ing": "tra-den",
+"qty": 5
+},
+{
+"ing": "oi",
+"qty": 80
+},
+{
+"ing": "duong",
+"qty": 25
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 34
+},
+"p-35": {
+"active": true,
+"cat": "Sinh tố",
+"name": "Sinh tố bơ",
+"price": 22000,
+"recipe": [
+{
+"ing": "bo",
+"qty": 150
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "sua-tuoi",
+"qty": 50
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 35
+},
+"p-36": {
+"active": true,
+"cat": "Sinh tố",
+"name": "Sinh tố mãng cầu",
+"price": 22000,
+"recipe": [
+{
+"ing": "mang-cau",
+"qty": 150
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "sua-tuoi",
+"qty": 50
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 36
+},
+"p-37": {
+"active": true,
+"cat": "Sinh tố",
+"name": "Sinh tố xoài",
+"price": 22000,
+"recipe": [
+{
+"ing": "xoai",
+"qty": 150
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "sua-tuoi",
+"qty": 50
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 37
+},
+"p-38": {
+"active": true,
+"cat": "Sinh tố",
+"name": "Sinh tố dâu",
+"price": 25000,
+"recipe": [
+{
+"ing": "dau",
+"qty": 120
+},
+{
+"ing": "sua-dac",
+"qty": 30
+},
+{
+"ing": "sua-tuoi",
+"qty": 50
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 38
+},
+"p-39": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước chanh vàng",
+"price": 15000,
+"recipe": [
+{
+"ing": "chanh-vang",
+"qty": 1
+},
+{
+"ing": "duong",
+"qty": 30
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 39
+},
+"p-40": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước ép cam",
+"price": 15000,
+"recipe": [
+{
+"ing": "cam",
+"qty": 400
+},
+{
+"ing": "duong",
+"qty": 10
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 40
+},
+"p-41": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước ép cà chua",
+"price": 15000,
+"recipe": [
+{
+"ing": "ca-chua",
+"qty": 300
+},
+{
+"ing": "duong",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 41
+},
+"p-42": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước ép ổi",
+"price": 15000,
+"recipe": [
+{
+"ing": "oi",
+"qty": 300
+},
+{
+"ing": "duong",
+"qty": 10
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 42
+},
+"p-43": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước ép thơm",
+"price": 15000,
+"recipe": [
+{
+"ing": "thom",
+"qty": 300
+},
+{
+"ing": "duong",
+"qty": 10
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 43
+},
+"p-44": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước ép cà rốt",
+"price": 15000,
+"recipe": [
+{
+"ing": "ca-rot",
+"qty": 300
+},
+{
+"ing": "duong",
+"qty": 10
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 44
+},
+"p-45": {
+"active": true,
+"cat": "Nước ép",
+"name": "Nước ép táo",
+"price": 20000,
+"recipe": [
+{
+"ing": "tao",
+"qty": 300
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.15
+}
+],
+"recipeSample": true,
+"sort": 45
+},
+"p-46": {
+"active": true,
+"cat": "Sữa chua",
+"name": "Sữa chua xoài",
+"price": 20000,
+"recipe": [
+{
+"ing": "sua-chua",
+"qty": 1
+},
+{
+"ing": "xoai",
+"qty": 60
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.1
+}
+],
+"recipeSample": true,
+"sort": 46
+},
+"p-47": {
+"active": true,
+"cat": "Sữa chua",
+"name": "Sữa chua dâu",
+"price": 20000,
+"recipe": [
+{
+"ing": "sua-chua",
+"qty": 1
+},
+{
+"ing": "dau",
+"qty": 50
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.1
+}
+],
+"recipeSample": true,
+"sort": 47
+},
+"p-48": {
+"active": true,
+"cat": "Sữa chua",
+"name": "Sữa chua mãng cầu",
+"price": 25000,
+"recipe": [
+{
+"ing": "sua-chua",
+"qty": 1
+},
+{
+"ing": "mang-cau",
+"qty": 60
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.1
+}
+],
+"recipeSample": true,
+"sort": 48
+},
+"p-49": {
+"active": true,
+"cat": "Sữa chua",
+"name": "Sữa chua chanh dây",
+"price": 20000,
+"recipe": [
+{
+"ing": "sua-chua",
+"qty": 1
+},
+{
+"ing": "chanh-day",
+"qty": 1
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.1
+}
+],
+"recipeSample": true,
+"sort": 49
+},
+"p-50": {
+"active": true,
+"cat": "Sữa chua",
+"name": "Sữa chua hạt đác",
+"price": 22000,
+"recipe": [
+{
+"ing": "sua-chua",
+"qty": 1
+},
+{
+"ing": "hat-dac",
+"qty": 50
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.1
+}
+],
+"recipeSample": true,
+"sort": 50
+},
+"p-51": {
+"active": true,
+"cat": "Sữa chua",
+"name": "Sữa chua thạch jelly",
+"price": 22000,
+"recipe": [
+{
+"ing": "sua-chua",
+"qty": 1
+},
+{
+"ing": "thach-jelly",
+"qty": 50
+},
+{
+"ing": "sua-dac",
+"qty": 15
+},
+{
+"ing": "ly-nap",
+"qty": 1
+},
+{
+"ing": "ong-hut",
+"qty": 1
+},
+{
+"ing": "da-vien",
+"qty": 0.1
+}
+],
+"recipeSample": true,
+"sort": 51
+}
+},
+"ingredients": {
+"bo": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Bơ",
+"unit": "g"
+},
+"bot-beo": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 300,
+"name": "Bột kem béo",
+"unit": "g"
+},
+"bot-cacao": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Bột cacao",
+"unit": "g"
+},
+"bot-matcha": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Bột matcha",
+"unit": "g"
+},
+"ca-chua": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Cà chua",
+"unit": "g"
+},
+"ca-phe": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Cà phê bột",
+"unit": "g"
+},
+"ca-rot": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Cà rốt",
+"unit": "g"
+},
+"cam": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 5000,
+"costBuy": 25000,
+"costQty": 5,
+"minStock": 1000,
+"name": "Cam",
+"unit": "g"
+},
+"chanh-day": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 5,
+"name": "Chanh dây",
+"unit": "quả"
+},
+"chanh-vang": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 5,
+"name": "Chanh vàng",
+"unit": "quả"
+},
+"da-vien": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 5,
+"name": "Đá viên",
+"unit": "kg"
+},
+"dau": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 300,
+"name": "Dâu tây",
+"unit": "g"
+},
+"duong": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Đường nước",
+"unit": "ml"
+},
+"hat-dac": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Hạt đác",
+"unit": "g"
+},
+"kem-muoi": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Kem muối",
+"unit": "g"
+},
+"kem-pho-mai": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Kem phô mai",
+"unit": "g"
+},
+"kem-trung": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Kem trứng",
+"unit": "g"
+},
+"ly-nap": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 50,
+"name": "Ly nhựa + nắp",
+"unit": "cái"
+},
+"mang-cau": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Mãng cầu",
+"unit": "g"
+},
+"me": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Me",
+"unit": "g"
+},
+"milo": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Milo",
+"unit": "g"
+},
+"nho": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Nho",
+"unit": "g"
+},
+"nuoc-cot-dua": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 300,
+"name": "Nước cốt dừa",
+"unit": "ml"
+},
+"oi": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Ổi",
+"unit": "g"
+},
+"ong-hut": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 50,
+"name": "Ống hút",
+"unit": "cái"
+},
+"siro-luu": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 200,
+"name": "Siro lựu",
+"unit": "ml"
+},
+"sua-chua": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 10,
+"name": "Sữa chua",
+"unit": "hũ"
+},
+"sua-dac": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 300,
+"name": "Sữa đặc",
+"unit": "g"
+},
+"sua-tuoi": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 1000,
+"name": "Sữa tươi",
+"unit": "ml"
+},
+"suong-sao": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 11000,
+"costBuy": 55000,
+"costQty": 5,
+"minStock": 300,
+"name": "Sương sáo",
+"unit": "g"
+},
+"tao": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Táo",
+"unit": "g"
+},
+"thach-jelly": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 300,
+"name": "Thạch jelly",
+"unit": "g"
+},
+"thom": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Thơm",
+"unit": "g"
+},
+"tra-ba-tuoc": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Trà bá tước",
+"unit": "g"
+},
+"tra-den": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Trà đen",
+"unit": "g"
+},
+"tra-nhai": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Trà nhài",
+"unit": "g"
+},
+"tra-olong": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 100,
+"name": "Trà ô long",
+"unit": "g"
+},
+"tui-ship": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 30,
+"name": "Túi đựng mang đi",
+"unit": "cái"
+},
+"xoai": {
+"baseAt": "2026-10-10T00:00:00.000Z",
+"baseQty": 0,
+"cost": 0,
+"minStock": 500,
+"name": "Xoài",
+"unit": "g"
+}
+},
+"settings": {
+"main": {
+"shipFee": 5000
+}
+}
+}
