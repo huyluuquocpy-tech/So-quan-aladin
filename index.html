@@ -14,9 +14,7 @@
 <link rel="icon" type="image/png" href="icons/favicon.png">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <script src="config.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="bridge.js"></script>
 </head>
 <body>
@@ -600,6 +598,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin-left:auto}
   <section id="v-report" hidden>
     <div class="sec-head">
       <div><h2>Báo cáo <em>kinh doanh</em></h2><p id="rangeLabel"></p></div>
+      <button class="btn" id="btnExport" type="button" hidden>Sao lưu Excel</button>
       <div class="seg" id="segRange" style="min-width:min(100%,380px)">
         <button type="button" data-r="today" class="on">Hôm nay</button>
         <button type="button" data-r="7d">7 ngày</button>
@@ -1064,7 +1063,24 @@ function renderSetup(){
 if($("#setupCard"))$("#setupCard").addEventListener("click",e=>{
   if(e.target.closest("#setupToggle")){setupOpen=!setupOpen;try{localStorage.setItem("aladin.setupOpen",setupOpen?"1":"0");}catch(err){}renderSetup();return;}
   const b=e.target.closest("[data-go]");if(!b)return;if(b.dataset.gosub)sub=b.dataset.gosub;showTab(b.dataset.go);});
-function renderAll(){renderPOS();renderTxns();renderStock();renderMenu();renderReport();}
+let xlsxLoading=null;
+function loadXlsx(){if(window.XLSX)return Promise.resolve();if(xlsxLoading)return xlsxLoading;xlsxLoading=new Promise((res,rej)=>{const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";sc.onload=res;sc.onerror=()=>{xlsxLoading=null;rej();};document.head.appendChild(sc);});return xlsxLoading;}
+async function exportXlsx(){
+  const b=$("#btnExport");b.disabled=true;b.textContent="Đang tạo file…";
+  try{await loadXlsx();}catch(e){toast("Không tải được công cụ Excel. Kiểm tra mạng rồi thử lại.");b.disabled=false;b.textContent="Sao lưu Excel";return;}
+  const X=window.XLSX,wb=X.utils.book_new();
+  const add=(name,rows)=>X.utils.book_append_sheet(wb,X.utils.json_to_sheet(rows.length?rows:[{"Ghi chú":"Chưa có dữ liệu"}]),name);
+  add("Đơn hàng",S.orders.filter(o=>o.status!=="deleted").map(o=>({"Ngày":o.day,"Giờ":fmtTime(o.createdAt),"Món":(o.items||[]).map(i=>i.name+" x"+i.qty).join(", "),"Tổng tiền":+o.total||0,"Giá vốn":+o.cost||0,"Thanh toán":PAY[o.pay]||o.pay||"","Hình thức":CH[o.channel]||o.channel||"","Trạng thái":o.status==="void"?"Đã hủy ("+((o.void&&o.void.reason)||"")+")":"Hoàn tất","Đã sửa":o.edited?"Có":""})));
+  add("Thu chi",S.txns.map(t=>({"Ngày":t.day,"Loại":t.type==="in"?"Thu":"Chi","Danh mục":t.cat,"Số tiền":+t.amount||0,"Trả bằng":PAY[t.pay]||"","Ghi chú":t.note||"","Mặt hàng":(t.lines||[]).map(l=>(S.ing[l.ing]?S.ing[l.ing].name:l.ing)+" "+l.qty).join(", ")})));
+  const st=computeStocks();
+  add("Kho",ingList().map(i=>({"Nguyên liệu":i.name,"Đơn vị":i.unit,"Giá vốn / đơn vị":+i.cost||0,"Tồn theo sổ":Math.round((st[i.id]||0)*100)/100,"Báo hết khi dưới":+i.minStock||0})));
+  add("Món",prodList().map(p=>({"Nhóm":p.cat,"Món":p.name,"Giá bán":+p.price||0,"Giá vốn / ly":Math.round(recipeCost(p)),"Định lượng":(p.recipe||[]).map(r=>(S.ing[r.ing]?S.ing[r.ing].name+" "+r.qty+S.ing[r.ing].unit:r.ing)).join(", "),"Đang bán":p.active===false?"Không":"Có"})));
+  add("Chốt két",Object.values(S.closings).sort((a,b)=>String(b.day).localeCompare(String(a.day))).map(c=>({"Ngày":c.day,"Tiền lẻ đầu ngày":c.float,"Két nên có":c.expected,"Đếm được":c.counted,"Chênh lệch":c.diff})));
+  try{X.writeFile(wb,"so-quan-aladin-"+today()+".xlsx");toast("Đã tạo file sao lưu.");}catch(e){toast("Không lưu được file trên thiết bị này.");}
+  b.disabled=false;b.textContent="Sao lưu Excel";
+}
+$("#btnExport").addEventListener("click",exportXlsx);
+function renderAll(){if(window.__STANDALONE)$("#btnExport").hidden=false;renderPOS();renderTxns();renderStock();renderMenu();renderReport();}
 let sub="ing";
 function showTab(t){if(t==="menu"){t="stock";sub="menu";}tab=t;document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));const vis=t==="stock"&&sub==="menu"?"menu":t;["pos","money","stock","menu","report"].forEach(k=>$("#v-"+k).hidden=k!==vis);document.querySelectorAll("[data-sub]").forEach(b=>b.classList.toggle("on",b.dataset.sub===sub));try{localStorage.setItem("aladin.tab",t);}catch(e){}window.scrollTo(0,0);}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-sub]");if(b){sub=b.dataset.sub;showTab("stock");}});
