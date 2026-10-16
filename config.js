@@ -4,5 +4,5 @@
    - SUPABASE_ANON_KEY: mục "anon public" (hoặc "publishable key")
    Khóa anon không phải mật khẩu: dữ liệu được bảo vệ bằng đăng nhập + luật bảo mật trong supabase.sql,
    nên để công khai trên GitHub vẫn an toàn. TUYỆT ĐỐI không dán khóa "service_role" / "secret" vào đây. */
-window.SUPABASE_URL = "";
-window.SUPABASE_ANON_KEY = "";
+window.SUPABASE_URL = "https://ymwubudtbihoqfybrgqg.supabase.co";
+window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inltd3VidWR0Ymlob3FmeWJyZ3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIxNTI0NzAsImV4cCI6MjEwNzcyODQ3MH0.fomOo2z6wG6HzvdQAdowbqzLn91Xjfd7PrLHIOStfaY";
