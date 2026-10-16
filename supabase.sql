@@ -1,7 +1,7 @@
 -- =====================================================================
 -- Sổ quán The Aladin — thiết lập kho dữ liệu Supabase
--- Cách dùng: Supabase → SQL Editor → New query → dán toàn bộ file này
---            → SỬA 2 email ở mục (2) → bấm Run.  Chạy lại nhiều lần vẫn an toàn.
+-- Cách dùng: Supabase → SQL Editor → New query → dán toàn bộ file này → bấm Run.
+--            Chạy lại nhiều lần vẫn an toàn.  Thêm người dùng: thêm email ở mục (2).
 -- =====================================================================
 
 -- (1) Bảng dữ liệu chung của app
@@ -17,17 +17,16 @@ create index if not exists docs_coll_day_idx     on public.docs (coll, day);
 create index if not exists docs_coll_updated_idx on public.docs (coll, updated_at);
 
 create or replace function public.docs_touch() returns trigger
-language plpgsql as $$ begin new.updated_at := now(); return new; end $$;
+language plpgsql set search_path = public as $$ begin new.updated_at := now(); return new; end $$;
 drop trigger if exists docs_touch on public.docs;
 create trigger docs_touch before insert or update on public.docs
   for each row execute function public.docs_touch();
 
--- (2) Danh sách email được phép dùng app — SỬA 2 EMAIL DƯỚI ĐÂY
+-- (2) Danh sách email được phép dùng app — thêm email người cùng làm vào đây nếu cần
 create table if not exists public.allowed_users (email text primary key);
 alter table public.allowed_users enable row level security;   -- không ai đọc được bảng này qua app
 insert into public.allowed_users (email) values
-  ('email-cua-ban@gmail.com'),
-  ('email-ban-cung-lam@gmail.com')
+  ('huyluuquocpy@gmail.com')
 on conflict do nothing;
 
 create or replace function public.is_allowed() returns boolean
@@ -35,12 +34,14 @@ language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.allowed_users
                  where lower(email) = lower(coalesce(auth.jwt()->>'email', '')));
 $$;
+revoke all on function public.is_allowed() from anon, public;
+grant execute on function public.is_allowed() to authenticated;
 
 -- (3) Luật bảo mật: chỉ người đã đăng nhập VÀ có trong danh sách mới đọc/ghi được
 alter table public.docs enable row level security;
 drop policy if exists docs_rw on public.docs;
 create policy docs_rw on public.docs for all to authenticated
-  using (public.is_allowed()) with check (public.is_allowed());
+  using ((select public.is_allowed())) with check ((select public.is_allowed()));
 revoke all on public.docs from anon;
 
 -- (4) Cập nhật một phần dữ liệu (gộp trường mới vào trường cũ)

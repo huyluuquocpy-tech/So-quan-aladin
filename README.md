@@ -11,15 +11,13 @@ Cài lên màn hình chính như app thật, **bán được cả khi mất mạ
 
 ## Cài đặt lần đầu (khoảng 15 phút, nên làm trên máy tính)
 
-### 1. Tạo dự án Supabase
-1. Vào https://supabase.com → **Start your project** → đăng nhập bằng GitHub.
-2. **New project** → tên `so-quan-aladin` → đặt mật khẩu database (lưu lại) →
-   Region: **Southeast Asia (Singapore)** → **Create new project**. Đợi 1–2 phút.
+### 1. Dự án Supabase
+Đã có sẵn: dự án **Aladin** (`ymwubudtbihoqfybrgqg`), đã gắn vào `config.js`.
 
 ### 2. Tạo bảng và luật bảo mật
 1. Menu trái **SQL Editor** → **New query**.
 2. Mở file `supabase.sql` trong repo này, copy toàn bộ, dán vào.
-3. **Sửa 2 email** ở mục (2) thành email của bạn và người cùng làm.
+3. (Tùy chọn) thêm email người cùng làm ở mục (2).
 4. Bấm **Run**. Thấy "Success" là xong.
 
 ### 3. Tạo tài khoản đăng nhập
@@ -29,15 +27,8 @@ Cài lên màn hình chính như app thật, **bán được cả khi mất mạ
 3. **Authentication → Sign In / Providers** (hoặc **Settings**) → tắt **Allow new users to sign up**
    để người lạ không tự tạo tài khoản được.
 
-### 4. Lấy khóa kết nối
-**Project Settings → API** (hoặc **Data API**): copy **Project URL** và khóa **anon public**
-(có nơi gọi là *publishable key*). Gửi 2 thông tin này cho Claude, hoặc tự dán vào `config.js`:
-
-```js
-window.SUPABASE_URL = "https://xxxx.supabase.co";
-window.SUPABASE_ANON_KEY = "eyJ...";
-```
-Khóa anon để công khai vẫn an toàn vì dữ liệu được khóa bằng đăng nhập + luật ở bước 2.
+### 4. Khóa kết nối
+Đã điền sẵn trong `config.js` (khóa **anon**, để công khai vẫn an toàn vì dữ liệu được khóa bằng đăng nhập + luật ở bước 2).
 **Không bao giờ** dán khóa `service_role` / `secret` vào app.
 
 ### 5. Bật GitHub Pages
