@@ -37,12 +37,61 @@ $$;
 revoke all on function public.is_allowed() from anon, public;
 grant execute on function public.is_allowed() to authenticated;
 
--- (3) Luật bảo mật: chỉ người đã đăng nhập VÀ có trong danh sách mới đọc/ghi được
+-- (3) Luật bảo mật — QUẢN LÝ: đã nhập mật khẩu quản lý (tài khoản trong danh sách) → toàn quyền
 alter table public.docs enable row level security;
 drop policy if exists docs_rw on public.docs;
 create policy docs_rw on public.docs for all to authenticated
   using ((select public.is_allowed())) with check ((select public.is_allowed()));
 revoke all on public.docs from anon;
+
+-- (3b) NHÂN VIÊN (không đăng nhập): chỉ đọc menu, phí ship, đơn hôm nay; chỉ được THÊM đơn mới
+grant select, insert on public.docs to anon;
+drop policy if exists docs_staff_read on public.docs;
+create policy docs_staff_read on public.docs for select to anon using (
+  coll in ('products', 'settings')
+  or (coll = 'orders' and day >= to_char(now() at time zone 'Asia/Ho_Chi_Minh', 'YYYY-MM-DD'))
+);
+drop policy if exists docs_staff_order on public.docs;
+create policy docs_staff_order on public.docs for insert to anon with check (
+  coll = 'orders'
+  and jsonb_typeof(data->'items') = 'array'
+  and coalesce(data->>'status', 'ok') = 'ok'
+  and not (data ? 'edited') and not (data ? 'deleted') and not (data ? 'void')
+  and (data->>'day') between to_char((now() at time zone 'Asia/Ho_Chi_Minh')::date - 3, 'YYYY-MM-DD')
+                         and to_char((now() at time zone 'Asia/Ho_Chi_Minh')::date + 1, 'YYYY-MM-DD')
+);
+
+-- (3c) Đơn do nhân viên gửi: máy chủ tự tính giá vốn + nguyên liệu đã dùng theo công thức
+--      (máy nhân viên không được xem giá nguyên liệu)
+create or replace function public.to_num(t text) returns numeric
+language sql immutable set search_path = public as $$
+  select coalesce(substring(replace(coalesce(t, ''), ',', '.') from '^\s*(-?[0-9]*\.?[0-9]+)')::numeric, 0);
+$$;
+revoke all on function public.to_num(text) from anon, public;
+
+create or replace function public.docs_order_cost() returns trigger
+language plpgsql security definer set search_path = public as $$
+declare it jsonb; r jsonb; pr jsonb; ing jsonb; q numeric; u jsonb := '{}'::jsonb; c numeric := 0;
+begin
+  if new.coll <> 'orders' or public.is_allowed() then return new; end if;
+  for it in select value from jsonb_array_elements(coalesce(new.data->'items', '[]'::jsonb)) loop
+    select d.data into pr from public.docs d where d.coll = 'products' and d.id = it->>'pid';
+    continue when pr is null or jsonb_typeof(pr->'recipe') is distinct from 'array';
+    for r in select value from jsonb_array_elements(pr->'recipe') loop
+      select d.data into ing from public.docs d where d.coll = 'ingredients' and d.id = r->>'ing';
+      continue when ing is null;
+      q := public.to_num(r->>'qty') * public.to_num(it->>'qty');
+      u := u || jsonb_build_object(r->>'ing', coalesce((u->>(r->>'ing'))::numeric, 0) + q);
+      c := c + q * public.to_num(ing->>'cost');
+    end loop;
+  end loop;
+  new.data := new.data || jsonb_build_object('usage', u, 'cost', round(c), 'by', null);
+  return new;
+end $$;
+revoke all on function public.docs_order_cost() from anon, public;
+drop trigger if exists docs_order_cost on public.docs;
+create trigger docs_order_cost before insert on public.docs
+  for each row execute function public.docs_order_cost();
 
 -- (4) Cập nhật một phần dữ liệu (gộp trường mới vào trường cũ)
 create or replace function public.docs_merge(p_coll text, p_id text, p_patch jsonb) returns void
