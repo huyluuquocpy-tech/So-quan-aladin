@@ -39,7 +39,7 @@ Mật khẩu quản lý là mật khẩu của một tài khoản Supabase:
 
 ### 5. Bật GitHub Pages
 Repo → **Settings → Pages** → Source: **Deploy from a branch** → Branch `main`, thư mục `/ (root)` → **Save**.
-Sau 1–2 phút app có tại `https://huyluuquocpy-tech.github.io/so-quan-aladin/`
+Sau 1–2 phút app có tại `https://huyluuquocpy-tech.github.io/So-quan-aladin/`
 
 ### 6. Đăng nhập và nạp dữ liệu ban đầu
 Mở địa chỉ trên → bấm **Quản lý** → nhập mật khẩu quản lý → bấm **Nạp dữ liệu** ở thanh trên cùng (menu 51 món, công thức mẫu,
