@@ -88,7 +88,7 @@ begin
   new.data := new.data || jsonb_build_object('usage', u, 'cost', round(c), 'by', null);
   return new;
 end $$;
-revoke all on function public.docs_order_cost() from anon, public;
+revoke all on function public.docs_order_cost() from anon, authenticated, public;
 drop trigger if exists docs_order_cost on public.docs;
 create trigger docs_order_cost before insert on public.docs
   for each row execute function public.docs_order_cost();
