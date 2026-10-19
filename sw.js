@@ -1,6 +1,6 @@
 /* Service worker: app mở được khi mất mạng.
    Mỗi lần sửa app: tăng VERSION (vd soquan-v3) → máy người dùng hiện thanh "Có bản cập nhật mới". */
-const VERSION = "soquan-v3";
+const VERSION = "soquan-v4";
 const CORE = [
   "./", "./index.html", "./config.js", "./bridge.js", "./manifest.webmanifest", "./seed.json",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png", "./icons/favicon.png",

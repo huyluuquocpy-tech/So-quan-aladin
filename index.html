@@ -175,6 +175,7 @@ input[type=checkbox]{accent-color:var(--teal);width:18px;height:18px}
 .sum dt{color:var(--muted);font-size:.86rem} .sum dd{margin:0;text-align:right;font-weight:500;font-size:.88rem}
 .sum dt.total{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:600;align-self:end;padding-top:8px}
 .sum dd.total{font-family:var(--f-display);font-size:2rem;color:var(--maroon);font-weight:600;padding-top:6px;letter-spacing:-.02em;font-variation-settings:"opsz" 72}
+.shipbox{display:flex;flex-direction:column;gap:8px}.shipchk{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem;cursor:pointer;min-height:40px;padding:4px 2px;user-select:none}.shipchk input{width:20px;height:20px;accent-color:var(--teal);margin:0;flex:none}.shipin{display:flex;flex-direction:column;gap:4px}.shipin input{width:100%;min-width:0;box-sizing:border-box}
 .quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .quick button{border:1.5px dashed #d8c6ae;background:#fff;color:var(--ink);border-radius:10px;min-height:36px;padding:6px 10px;font-size:.8rem;font-weight:500;transition:all .15s}
 .quick button:hover{border-style:solid;border-color:var(--teal)}
@@ -465,19 +466,13 @@ input[type=date]::-webkit-calendar-picker-indicator{margin-left:auto}
           <div class="rc-head"><div class="rc-brand">The Aladin</div><div class="rc-meta"><span>Hóa đơn tạm</span><span id="rcTime"></span></div><button class="link" id="clearCart" type="button">Xóa hết</button></div>
           <div class="editbar" id="editBar" hidden><span>Đang sửa đơn <b id="editInfo"></b></span><button class="link" id="editCancel" type="button">Thôi sửa</button></div>
           <ul id="cartItems"></ul>
-          <div class="seg" id="segChannel">
-            <button type="button" data-ch="here" class="on">Tại quán</button>
-            <button type="button" data-ch="away">Mang đi</button>
-            <button type="button" data-ch="ship">Giao hàng</button>
-          </div>
           <div class="seg" id="segPay">
             <button type="button" data-pay="cash" class="on">Tiền mặt</button>
             <button type="button" data-pay="transfer">Chuyển khoản</button>
           </div>
-          <div id="cashBox">
-            <div class="small muted" style="font-weight:600">Khách đưa (không bắt buộc)</div>
-            <div class="quick" id="quickCash"></div>
-            <div class="change" id="changeOut"></div>
+          <div class="shipbox">
+            <label class="shipchk"><input type="checkbox" id="shipOn"><span>Phí ship</span></label>
+            <div class="shipin" id="shipWrap" hidden><input id="shipAmt" class="inp" type="text" inputmode="decimal" autocomplete="off" data-money="1" placeholder="Nhập phí ship (vd 15 = 15.000đ)" aria-label="Số tiền phí ship"></div>
           </div>
           <dl class="sum">
             <dt>Tạm tính</dt><dd id="sumSub">0đ</dd>
@@ -686,7 +681,8 @@ const PAY={cash:"Tiền mặt",transfer:"Chuyển khoản"};
 
 const S={prod:{},ing:{},orders:[],txns:[],closings:{},settings:{shipFee:5000},ready:{prod:0,ing:0,orders:0,txns:0},ro:false,me:null};
 let db=null,user=null;
-let cart=[],cashGiven=0,lastAdded=null,editing=null,pendingDelOrder=null;let posCat="all",posCh="here",posPay="cash";
+let cart=[],cashGiven=0,lastAdded=null,editing=null,pendingDelOrder=null;let posCat="all",posPay="cash",shipOn=false;
+function resetShip(){shipOn=false;const a=$("#shipAmt");if(a){a.value="";const h=a.nextElementSibling;if(h&&h.classList.contains("mhint"))h.textContent="";}}
 let tab="pos",range="today",txnType="out",txnFilter="all",pendingDel=null;
 let draftLines=[],editIng=null,ingMode="edit",editProd=null,draftRecipe=[],voidId=null;
 
@@ -735,7 +731,7 @@ const cPrice=c=>c.price!=null?+c.price:(S.prod[c.pid]?+S.prod[c.pid].price||0:nu
 const cName=c=>c.name||(S.prod[c.pid]&&S.prod[c.pid].name)||"Món";
 function cartTotals(){
   let sub=0,cups=0;cart.forEach(c=>{const pr=cPrice(c);if(pr!=null){sub+=pr*c.qty;cups+=c.qty;}});
-  const ship=posCh==="ship"&&cart.length?(editing&&editing.channel==="ship"?(+editing.shipFee||0):(+S.settings.shipFee||0)):0;
+  const ship=shipOn&&cart.length?money($("#shipAmt").value):0;
   return {sub,ship,total:sub+ship,cups};
 }
 function renderCart(){
@@ -750,32 +746,27 @@ function renderCart(){
   $("#btnCheckout").textContent=editing?(cart.length?"Lưu thay đổi · "+VND(t.total):"Thêm món để lưu"):(cart.length?"Thanh toán "+VND(t.total):"Thanh toán");
   $("#editBar").hidden=!editing;if(editing)$("#editInfo").textContent=fmtDay(editing.day)+" lúc "+fmtTime(editing.createdAt)+" · "+VND(editing.total);
   $("#cart").classList.toggle("editing",!!editing);
-  document.querySelectorAll("#segChannel button").forEach(b=>b.classList.toggle("on",b.dataset.ch===posCh));
+  $("#shipOn").checked=shipOn;$("#shipWrap").hidden=!shipOn;
   document.querySelectorAll("#segPay button").forEach(b=>b.classList.toggle("on",b.dataset.pay===posPay));
-  $("#cashBox").hidden=posPay!=="cash";
-  const opts=new Set();if(t.total){opts.add(t.total);opts.add(Math.ceil(t.total/10000)*10000);[50000,100000,200000,500000].forEach(v=>{if(v>=t.total)opts.add(v);});}
-  $("#quickCash").innerHTML=[...opts].slice(0,5).map(v=>'<button type="button" class="'+(v===cashGiven?"on":"")+'" data-cash="'+v+'">'+(v===t.total?"Đủ tiền":VND(v))+'</button>').join("");
-  const g=cashGiven;
-  $("#changeOut").innerHTML=g&&t.total?(g>=t.total?'Thối lại: <strong>'+VND(g-t.total)+'</strong>':'<span style="color:var(--bad)">Khách đưa thiếu '+VND(t.total-g)+'</span>'):"";
 }
 async function checkout(){
   if(!cart.length||!db)return;
+  if(shipOn&&!money($("#shipAmt").value)){toast("Nhập số tiền phí ship, hoặc bỏ tích Phí ship.");$("#shipAmt").focus();return;}
   const t=cartTotals();const usage={};let cost=0;
   const items=cart.map(c=>{const p=S.prod[c.pid];((p&&p.recipe)||[]).forEach(r=>{if(!S.ing[r.ing])return;const q=num(r.qty)*c.qty;usage[r.ing]=(usage[r.ing]||0)+q;cost+=q*(+S.ing[r.ing].cost||0);});return {pid:c.pid,name:cName(c),price:cPrice(c)||0,qty:c.qty};});
   const now=new Date();
   if(editing){
     const o=editing;const {id:_omit,...old}=o;
-    const doc={...old,items,subtotal:t.sub,shipFee:t.ship,total:t.total,cost:Math.round(cost),usage,pay:posPay,channel:posCh,cups:t.cups,given:posPay==="cash"&&cashGiven?cashGiven:0,
+    const doc={...old,items,subtotal:t.sub,shipFee:t.ship,total:t.total,cost:Math.round(cost),usage,pay:posPay,channel:shipOn&&t.ship?"ship":"here",cups:t.cups,
       edited:{at:now.toISOString(),by:S.me||null,count:((o.edited&&o.edited.count)||0)+1,prevTotal:(o.edited&&o.edited.prevTotal!=null)?o.edited.prevTotal:o.total,prevPay:(o.edited&&o.edited.prevPay)||o.pay}};
     const btn=$("#btnCheckout");btn.disabled=true;btn.textContent="Đang lưu…";
-    try{await db.doc("orders/"+o.id).set(doc);editing=null;cart=[];cashGiven=0;setCartOpen(false);toast("Đã sửa đơn: "+VND(o.total)+" → "+VND(t.total));renderPOS();showTab("report");}
+    try{await db.doc("orders/"+o.id).set(doc);editing=null;cart=[];cashGiven=0;resetShip();setCartOpen(false);toast("Đã sửa đơn: "+VND(o.total)+" → "+VND(t.total));renderPOS();showTab("report");}
     catch(e){toast(errMsg(e));renderCart();}
     return;
   }
-  const doc={day:dayStr(now),createdAt:now.toISOString(),items,subtotal:t.sub,shipFee:t.ship,total:t.total,cost:Math.round(cost),usage,pay:posPay,channel:posCh,cups:t.cups,status:"ok",by:S.me||null};
-  const g=cashGiven;if(posPay==="cash"&&g)doc.given=g;
+  const doc={day:dayStr(now),createdAt:now.toISOString(),items,subtotal:t.sub,shipFee:t.ship,total:t.total,cost:Math.round(cost),usage,pay:posPay,channel:shipOn&&t.ship?"ship":"here",cups:t.cups,status:"ok",by:S.me||null};
   const btn=$("#btnCheckout");btn.disabled=true;btn.textContent="Đang lưu…";
-  try{await db.collection("orders").add(doc);cart=[];cashGiven=0;setCartOpen(false);toast("Đã lưu đơn "+VND(t.total)+" · "+PAY[posPay]);renderPOS();}
+  try{await db.collection("orders").add(doc);cart=[];cashGiven=0;resetShip();setCartOpen(false);toast("Đã lưu đơn "+VND(t.total)+" · "+PAY[posPay]);renderPOS();}
   catch(e){toast(errMsg(e));renderCart();}
 }
 
@@ -1091,10 +1082,10 @@ $("#catChips").addEventListener("click",e=>{const b=e.target.closest("[data-cat]
 $("#posSearch").addEventListener("input",renderPOS);
 $("#prodGrid").addEventListener("click",e=>{const b=e.target.closest("[data-pid]");if(!b)return;const id=b.dataset.pid;const c=cart.find(x=>x.pid===id);if(c)c.qty++;else cart.push({pid:id,qty:1});lastAdded=id;renderPOS();lastAdded=null;});
 $("#cartItems").addEventListener("click",e=>{const i=e.target.closest("[data-inc]"),d=e.target.closest("[data-dec]");if(i){cart.find(x=>x.pid===i.dataset.inc).qty++;}else if(d){const c=cart.find(x=>x.pid===d.dataset.dec);c.qty--;if(c.qty<=0)cart=cart.filter(x=>x!==c);}else return;renderPOS();});
-$("#clearCart").addEventListener("click",()=>{cart=[];cashGiven=0;renderPOS();});
-$("#segChannel").addEventListener("click",e=>{const b=e.target.closest("[data-ch]");if(b){posCh=b.dataset.ch;renderCart();}});
+$("#clearCart").addEventListener("click",()=>{cart=[];cashGiven=0;resetShip();renderPOS();});
+$("#shipOn").addEventListener("change",e=>{shipOn=e.target.checked;renderCart();if(shipOn)setTimeout(()=>{try{$("#shipAmt").focus();}catch(x){}},50);});
+$("#shipAmt").addEventListener("input",()=>{const t=cartTotals();$("#sumShip").textContent=VND(t.ship);$("#sumTotal").textContent=VND(t.total);$("#cartTotalBar").textContent=VND(t.total);const b=$("#btnCheckout");if(!editing&&cart.length)b.textContent="Thanh toán "+VND(t.total);else if(editing&&cart.length)b.textContent="Lưu thay đổi · "+VND(t.total);});
 $("#segPay").addEventListener("click",e=>{const b=e.target.closest("[data-pay]");if(b){posPay=b.dataset.pay;renderCart();}});
-$("#quickCash").addEventListener("click",e=>{const b=e.target.closest("[data-cash]");if(b){const v=+b.dataset.cash;cashGiven=cashGiven===v?0:v;renderCart();}});
 let cartOpen=false;
 function setCartOpen(o){cartOpen=!!o;$("#cart").classList.toggle("open",cartOpen);$("#cartScrim").hidden=!cartOpen;$("#cartBar").setAttribute("aria-expanded",String(cartOpen));$("#cartTogTxt").textContent=cartOpen?"Thu gọn":"Xem đơn";document.body.classList.toggle("cart-locked",cartOpen);}
 $("#cartBar").addEventListener("click",()=>{if(!cartOpen&&!cart.length){toast("Chọn món trước rồi mở đơn nhé.");return;}setCartOpen(!cartOpen);});
@@ -1135,8 +1126,8 @@ $("#saveShip").addEventListener("click",async()=>{const fee=money($("#shipFee").
 
 $("#reportBody").addEventListener("click",async e=>{const b=e.target.closest("[data-cm]");if(!b||S.ro||b.dataset.cm===costMode())return;try{await db.doc("settings/main").set({...S.settings,costMode:b.dataset.cm});toast(b.dataset.cm==="simple"?"Đã chuyển sang tính theo tiền mua hàng.":"Đã chuyển sang tính theo công thức.");}catch(err){toast(errMsg(err));}});
 $("#segRange").addEventListener("click",e=>{const b=e.target.closest("[data-r]");if(b){range=b.dataset.r;renderReport();}});
-function startEdit(id){const o=S.orders.find(x=>x.id===id);if(!o)return;editing=o;cart=(o.items||[]).map(i=>({pid:i.pid,qty:i.qty,price:i.price,name:i.name}));posPay=o.pay||"cash";posCh=o.channel||"here";cashGiven=0;$("#voidPanel").hidden=true;showTab("pos");renderPOS();setCartOpen(true);toast("Thêm, bớt món hoặc đổi cách thanh toán rồi bấm Lưu thay đổi.");}
-$("#editCancel").addEventListener("click",()=>{editing=null;cart=[];cashGiven=0;setCartOpen(false);renderPOS();showTab("report");});
+function startEdit(id){const o=S.orders.find(x=>x.id===id);if(!o)return;editing=o;cart=(o.items||[]).map(i=>({pid:i.pid,qty:i.qty,price:i.price,name:i.name}));posPay=o.pay||"cash";shipOn=o.channel==="ship"&&+o.shipFee>0;$("#shipAmt").value=shipOn?String(o.shipFee):"";cashGiven=0;$("#voidPanel").hidden=true;showTab("pos");renderPOS();setCartOpen(true);toast("Thêm, bớt món hoặc đổi cách thanh toán rồi bấm Lưu thay đổi.");}
+$("#editCancel").addEventListener("click",()=>{editing=null;cart=[];cashGiven=0;resetShip();setCartOpen(false);renderPOS();showTab("report");});
 $("#orderList").addEventListener("click",async e=>{
   const ed=e.target.closest("[data-edit-order]"),ask=e.target.closest("[data-askdelo]"),del=e.target.closest("[data-delo]");
   if(ed){startEdit(ed.dataset.editOrder);return;}
