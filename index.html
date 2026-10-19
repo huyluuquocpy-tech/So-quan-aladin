@@ -681,7 +681,7 @@ const PAY={cash:"Tiền mặt",transfer:"Chuyển khoản"};
 
 const S={prod:{},ing:{},orders:[],txns:[],closings:{},settings:{shipFee:5000},ready:{prod:0,ing:0,orders:0,txns:0},ro:false,me:null};
 let db=null,user=null;
-let cart=[],cashGiven=0,lastAdded=null,editing=null,pendingDelOrder=null;let posCat="all",posPay="cash",shipOn=false;
+let cart=[],cashGiven=0,lastAdded=null,editing=null,pendingDelOrder=null;let posCat="all",posPay="cash",shipOn=false,gridSig=null;
 function resetShip(){shipOn=false;const a=$("#shipAmt");if(a){a.value="";const h=a.nextElementSibling;if(h&&h.classList.contains("mhint"))h.textContent="";}}
 let tab="pos",range="today",txnType="out",txnFilter="all",pendingDel=null;
 let draftLines=[],editIng=null,ingMode="edit",editProd=null,draftRecipe=[],voidId=null;
@@ -713,15 +713,22 @@ function renderPOS(){
   const list=prods.filter(p=>(posCat==="all"||p.cat===posCat)&&(!q||fold(p.name).includes(q)));
   const inCart={};cart.forEach(c=>inCart[c.pid]=c.qty);
   if(!S.ready.prod){return;}
-  if(!list.length){$("#prodGrid").innerHTML='<div class="empty" style="grid-column:1/-1">'+(prods.length?"Không có món khớp tìm kiếm.":"Chưa có món nào. Thêm món ở tab Món.")+'</div>';}
+  if(!list.length){gridSig=null;$("#prodGrid").innerHTML='<div class="empty" style="grid-column:1/-1">'+(prods.length?"Không có món khớp tìm kiếm.":"Chưa có món nào. Thêm món ở tab Món.")+'</div>';}
   else{
+    const sig=posCat+"|"+q+"|"+list.map(p=>p.id+":"+p.name+":"+p.price+":"+p.cat+":"+(IMG.has(p.id)?1:0)).join(",");
+    if(sig!==gridSig){gridSig=sig;
     let html="",last=null;
     for(const p of list){
       const ck=CATS.indexOf(p.cat)<0?7:CATS.indexOf(p.cat);
       if(posCat==="all"&&!q&&p.cat!==last){html+='<div class="pcat" style="--cc:var(--cat'+ck+')">'+glyph(ck)+'<span>'+esc(p.cat)+'</span></div>';last=p.cat;}
-      html+='<button type="button" class="pbtn" style="--cc:var(--cat'+ck+');--i:'+Math.min(list.indexOf(p),40)+'" data-pid="'+esc(p.id)+'">'+(IMG.has(p.id)?'<img class="pimg" src="img/'+p.id+'.jpg" alt="" loading="lazy" width="76" height="76">':glyph(ck))+'<span class="pn">'+esc(p.name)+'</span><span class="pp">'+VND(p.price)+'</span>'+(inCart[p.id]?'<span class="badge'+(p.id===lastAdded?' pop':'')+'">'+inCart[p.id]+'</span>':"")+'</button>';
+      html+='<button type="button" class="pbtn" style="--cc:var(--cat'+ck+');--i:'+Math.min(list.indexOf(p),40)+'" data-pid="'+esc(p.id)+'">'+(IMG.has(p.id)?'<img class="pimg" src="img/'+p.id+'.jpg" alt="" loading="lazy" width="76" height="76">':glyph(ck))+'<span class="pn">'+esc(p.name)+'</span><span class="pp">'+VND(p.price)+'</span>'+'</button>';
     }
-    $("#prodGrid").innerHTML=html;
+    $("#prodGrid").innerHTML=html;}
+    // chỉ cập nhật số lượng trên món, không vẽ lại cả lưới (tránh ảnh bị giật)
+    $("#prodGrid").querySelectorAll(".pbtn[data-pid]").forEach(el=>{const id=el.dataset.pid,n=inCart[id];let bd=el.querySelector(".badge");
+      if(n){if(!bd){bd=document.createElement("span");bd.className="badge";el.appendChild(bd);}
+        if(bd.textContent!==String(n)){bd.textContent=n;if(id===lastAdded){bd.classList.remove("pop");void bd.offsetWidth;bd.classList.add("pop");}}}
+      else if(bd)bd.remove();});
   }
   renderCart();
   const t=today();let rev=0,n=0;S.orders.forEach(o=>{if(o.day===t&&live(o)){rev+=+o.total||0;n++;}});
